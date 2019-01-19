@@ -38,11 +38,13 @@ class GameState:
 
         return cards
 
-    def pop_q(self, n_cards):
+    def pop_q(self):
         """Pop the next question card"""
 
         card = self.question_cards[self.used_questions]
         self.used_questions += 1
+
+        self.current_question = card
 
         return card
 
@@ -53,7 +55,7 @@ class Player:
 
     def display_cards(self):
         for i in range(len(self.card_strings)):
-            print(str(i+1) + ".", card_strings[i])
+            print(str(i+1) + ".", self.card_strings[i])
 
 class HumanPlayer(Player):
     """Human player state"""
@@ -69,6 +71,9 @@ if __name__ == "__main__":
 
     game = GameState(n_human_players=1, n_ai_players=1, n_cards=10)
 
-    human = game.human_players[0]
+    game.pop_q()
 
-    print(human.player.card_strings)
+    print("Current questions:", game.current_question)
+
+    print("Human cards:")
+    print(game.human_players[0].player.display_cards())
