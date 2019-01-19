@@ -1,4 +1,5 @@
 import pickle
+from sentiment_analyses.azure_sentiment import azure_sentiment_score
 from random import shuffle
 
 class GameState:
