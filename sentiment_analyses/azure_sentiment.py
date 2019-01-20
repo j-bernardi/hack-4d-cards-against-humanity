@@ -37,3 +37,4 @@ def get_api_key():
 if __name__ == "__main__":
 
     score = azure_sentiment_score("Smelly fish fingers!")
+    print(score)
