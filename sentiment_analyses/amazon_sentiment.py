@@ -9,7 +9,7 @@ def AWS_SWAG(quote):
                               service_name='comprehend',
                               region_name='eu-west-1')
 
-    return json.dumps(comprehend.detect_sentiment(LanguageCode='en',Text=quote)['SentimentScore'])
+    return comprehend.detect_sentiment(LanguageCode='en',Text=quote)['SentimentScore']
 
 def get_api_key():
     with open('sentiment_analyses/amazon_api.txt', 'r') as api:

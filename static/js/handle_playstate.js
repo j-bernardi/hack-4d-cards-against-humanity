@@ -1,6 +1,5 @@
 //document.getElementById('question-div')
 //document.getElementById('card-div')
-
 document.getElementById('run-script-button').onclick = runScript;
 
 var ai_answer;

@@ -3,12 +3,22 @@ from sentiment_analyses.azure_sentiment import azure_sentiment_score
 # from sentiment_analyses.google_sentiment import GCP as google_sentiment_score
 from sentiment_analyses.amazon_sentiment import AWS_SWAG as amazon_sentiment_score
 from random import shuffle, randint
+from CAH_Keanu import initialise_prior, Update_After_Win, freq_expectation, from_posterior
+import numpy as np
+import pymc3 as pm
+from pymc3 import Normal
+
+
+
 
 class GameState:
     """Store the gamestate."""
 
     def __init__(self, n_human_players=1, n_ai_players=1, n_cards=10):
         """Initialise the gamestate and players."""
+
+
+
 
         self.n_cards = n_cards
 
@@ -60,8 +70,19 @@ class GameState:
         self.current_question = q
 
     def choose_ai_answer(self):
-        ind = randint(0, self.n_cards-1)
-        return self.current_question.replace("_", self.ai_players[0].player.card_strings[ind])
+        score_list=[]
+        for i in self.ai_players[0].player.card_strings:
+            phrase = self.current_question.replace("_", i)
+
+            temp = amazon_sentiment_score(phrase)
+            temp_sum = temp['Positive']+temp['Negative']
+            current_score=(temp['Positive']-temp['Negative'])/temp_sum
+            score_list.append((current_score+1)/2)
+
+        results = freq_expectation(np.array(score_list), self.ai_players[0].trace)
+        print(results)
+        my_answer= self.ai_players[0].player.card_strings[np.argmax(results)]
+        return self.current_question.replace("_", my_answer )
 
 class Player:
     """Contains common functions"""
@@ -80,7 +101,24 @@ class HumanPlayer(Player):
 class AIPlayer(Player):
     def __init__(self, parent):
         self.player = parent
+        X=np.loadtxt('AWS_collapsed.txt')
+        X = (X+1)/2
+        Freq=np.zeros(100)
+        #
+        for i in X:
+            Freq[int(np.ceil(i*100))]+=1
+        #
+        X=np.linspace(0,1,100)
+        #
+        with pm.Model():
+            # Priors are posteriors from previous iteration
+            alpha = Normal('alpha', 0.5,0.5)
+            beta = Normal('beta', 0.5,0.5)
+            gamma = Normal('gamma',0.5,0.5)
+            delta = Normal('delta',0.5,0.5)
 
+        # self.trace = initialise_prior(X,Freq)
+            self.trace = pm.backends.text.load('AWS')
 
 if __name__ == "__main__":
 
