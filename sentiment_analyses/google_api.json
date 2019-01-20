@@ -1,0 +1,23 @@
+{
+
+  "type": "service_account",
+
+  "project_id": "awesome-sylph-229223",
+
+  "private_key_id": "005ee8f91cc958d516892431454a9173e220076b",
+
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDUA1AStalypMfQ\n8XpTL7igSAot1zOE14rUE9jvAK+ZFJJAcQuyup7ni6ZSq3qE24q2p6/3LctS/yZ5\n81kr0HrNWgM6psyFp3Og3r6LAdm848ISnxeSo9jbKaUKAMUXOjYdV3cqMe4pZ+5x\ngON+dxg5hB4EJ8P4gDJyj27D7gvhosbdVFRsFkyP34XzyjqJOBbSSbKH1UjJoVXo\n0oYDfn5OsO3xQxn+gzT8UvlKm2VU02QKeFQiO7FGJXx3WWcJM4JQKjzTRyKq110q\nQP8j/C/pgrrkU75JVf7QPw6QrswlS2XLbrKyD/COFhgaQAAidLHlsJDzls8rlY1D\nml7tZVudAgMBAAECggEAQ6BU48rnZGa0R+0muC8iJJomCQ46ZDa+lTxJd58P4/Pg\nXMbSVO3bLv9oC7mf6I4A1pdxdRY541z4wHCDcorbCPKb0hMPbNiHdPpn6/4onmxF\n5NuzULaLvwivGJw7QdfzF/Pk0mQ/1BxPPgw/RIEnjH0cd/XZOERoEwu2aK/fQVau\neYIkp3veYYOnBrZMvb1N2uPWedNguzkN9icEyAi6El4NXcGcyIvHzcXlC6r3C/Bq\nAgR7v0s2Zk3QNjOwCosgVMrL2nr4X+EphQjXu06sNrTmRaq1fdA2TOkOhRCeNw19\nm3LE8vGViuAmvpVGU8wX+10F9ENxfIHfGknXEoXGHwKBgQDysYxI8JrRxIkNZ32N\n4vCdhZgguZ7QakAkmMY99udfk11eHyZbqz7cISqD5PYPnSeWtqyE4tdmW7yZzU5s\ntG6Go2ZDTMyyPPgDd/eZGh35E7gp1Z7Ktwffwyh9esfe546zT8NsXFH4uZ95TGYq\nvh6br1TdK3GkGb6rqIyTeveOLwKBgQDfoyGRhv/km9Wg43nZ4VkYS5nyxlit3mS2\nDW9oqowiScECUZIV82WnAq4b/j7FQ0pGNDafnm9MsO+THnsNQsiu1+nQRt4jEm4M\n0ZbwJJJsI1a32Ku9iohQTb/p6WEiSIkjjX0dNB0aREMqpXZ7Q/CkaMNsZTjO202F\nUp5WgpCr8wKBgEgE2BRtEgRdxi3sIB4S0kRseJB9hNtkLFSv4WRR+KcsG/DqXX+m\neajpTqyFLV/EyxK2csucZT9Cydz6R+OKR6I8qwQdrkDWRuMAnsEYNvzLFUOU2OJf\nHj8QsttJrDZBkN81NFDbtJeSvfhI66iTcpHQneZkFf0Uhrh58/1v6DaRAoGAEQVd\nfLIFr+Sccc5ea9LW8R5v7SZjgXg3uhNzs0enusRaSE7lC36m8fsmPUMwi9r/QDCh\nJ6zrU67zzQK44t1+YLBWP1/lcE3qylb5YfWmn0xhQUTgbWCp11LTlH4Kwo06wtX1\n+88HmAQyCIDnb6JQInNGzG030aanU8ph+rudPzkCgYEA2r8IrL1xEYfbYfYvY5Vj\nOIOppnCdOXOueeZDOXsj4DsNk62oMvbO34ex9DHuKj+2dk8+GQIUHWB8GEdLfiTL\nKyzTCatqFjDuHCAXwUhuxZytefZ3n80gnmbnT3CAnAAAaMtJnNvwkz7f/7Qbpre9\nN3jR5fHFUA0+GRXevGT6rVI=\n-----END PRIVATE KEY-----\n",
+
+  "client_email": "hack-cambridge@awesome-sylph-229223.iam.gserviceaccount.com",
+
+  "client_id": "104705503693306868725",
+
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+
+  "token_uri": "https://oauth2.googleapis.com/token",
+
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/hack-cambridge%40awesome-sylph-229223.iam.gserviceaccount.com"
+
+}

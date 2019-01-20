@@ -47,6 +47,10 @@ class GameState:
         card = self.question_cards[self.used_questions]
         self.used_questions += 1
 
+        while card.count("_") > 1:
+            card = self.question_cards[self.used_questions]
+            self.used_questions += 1
+
         self.current_question = card
 
         return card
