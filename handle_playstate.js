@@ -113,11 +113,11 @@ function voteSelected(winner){
   am_a = scores[2]
   az_a = scores[3]
   return_string += "<p>"
-  return_string += "Amazon rated your answer: " + am_h + "<br>"
-  return_string += "Microsoft Azure rated your answer: " + az_h + "<br>"
+  return_string += "Amazon rated your answer: " + "<br>" + am_h + "<br>"
+  return_string += "Microsoft Azure rated your answer: " + "<br>" + az_h + "<br>" + "<br>"
 
-  return_string += "Amazon rated the bot's answer " + am_a + "<br>"
-  return_string += "Microsoft Azure rated the bot's answer " + az_a + "<br>"
+  return_string += "Amazon rated the bot's answer " + "<br>" + am_a + "<br>"
+  return_string += "Microsoft Azure rated the bot's answer " + "<br>" + az_a + "<br>"
   return_string += "</p>"
 
   document.getElementById("winner-div").innerHTML = return_string
