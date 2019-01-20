@@ -8,17 +8,11 @@ import numpy as np
 import pymc3 as pm
 from pymc3 import Normal
 
-
-
-
 class GameState:
     """Store the gamestate."""
 
     def __init__(self, n_human_players=1, n_ai_players=1, n_cards=10):
         """Initialise the gamestate and players."""
-
-
-
 
         self.n_cards = n_cards
 
