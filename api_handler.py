@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import os
+
 from flask import Flask, jsonify, render_template, request, Response
 from flask_cors import CORS, cross_origin
 import game_model
@@ -5,14 +9,20 @@ import game_model
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/')
+@app.route('/main')
 @cross_origin()
-def hello_world():
-    return Response("Welcome to bots against humanity. \n<br> \
-        \n<br>\
-        \n<br>If you're here, the bots are already after you\
-        \n<br>get out of my api!\
-        ", mimetype="text/html")
+def hello(name=None):
+    return render_template('CAH.html', name=name)
+
+@app.route('/start')
+@cross_origin()
+def start(name=None):
+    return render_template('start.html', name=name)
+
+@app.route('/js/<path:filename>')
+@cross_origin()
+def serve_static(filename):
+    return send_from_directory(os.path.join('.', 'static', 'js'), filename)
 
 @app.route('/geta-question')
 @cross_origin()
