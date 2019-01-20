@@ -1,15 +1,16 @@
 import pickle, sys
 from sentiment_analyses.azure_sentiment import azure_sentiment_score
-from sentiment_analyses.google_sentiment import GCP as google_sentiment_score
+# from sentiment_analyses.google_sentiment import GCP as google_sentiment_score
 from sentiment_analyses.amazon_sentiment import AWS_SWAG as amazon_sentiment_score
-from random import shuffle
+from random import shuffle, randint
 
 class GameState:
     """Store the gamestate."""
 
-
     def __init__(self, n_human_players=1, n_ai_players=1, n_cards=10):
         """Initialise the gamestate and players."""
+
+        self.n_cards = n_cards
 
         # Load the answers
         with open("cards-against-humanity/answers.pickle", 'rb') as ans:
@@ -54,6 +55,13 @@ class GameState:
         self.current_question = card
 
         return self.current_question
+
+    def set_question(self, q):
+        self.current_question = q
+
+    def choose_ai_answer(self):
+        ind = randint(0, self.n_cards-1)
+        return self.current_question.replace("_", self.ai_players[0].player.card_strings[ind])
 
 class Player:
     """Contains common functions"""
@@ -107,4 +115,4 @@ if __name__ == "__main__":
     print(amazon_sentiment_score(phrase))
 
     print("google analysis:")
-    print(google_sentiment_score(phrase))
+    # print(google_sentiment_score(phrase))

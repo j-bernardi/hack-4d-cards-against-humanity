@@ -1,8 +1,6 @@
-import game_model
 from flask import Flask, jsonify, render_template, request, Response
 from flask_cors import CORS, cross_origin
-
-
+import game_model
 
 app = Flask(__name__)
 CORS(app)
@@ -10,28 +8,47 @@ CORS(app)
 @app.route('/')
 @cross_origin()
 def hello_world():
-    return Response("Welcome to the python prediction script. \n<br> \
+    return Response("Welcome to bots against humanity. \n<br> \
         \n<br>\
-        \n<br>Usage:\
-        \n<br>Dependent variable prediction software using gaussian_processing to interpolate data from an input text document\
-        \n<br>A script that takes an input dataset, learns that dataset, then provides a prediction depending on input query point\
-        \n<br>\
-        \n<br>argument input:\
-            \n<br>/data.txt/dimensions\
-            \n<br>(dimension input delimited by: '/', eg 'x1/x2/x3/x4 ... etc') \
-        \n<br>The order of the dimensions provided on the command line must match the order in which they appear on the file input 'data.txt')\
-        \n<br>\
-        \n<br>Eg: requires file input as:\
-        \n<br>(optional headers as strings) row 1: title1 title2 title3  .... dependent_variable_title\
-        \n<br>('dependent_variable' header must appear last)\
-        \n<br>\
-        \n<br>row 2: value1 value2 value3 .... dependent_value - as values\
-        \n<br>row 3: value1 value2 value3 .... dependent_value\
-        \n<br>etc ..\
+        \n<br>If you're here, the bots are already after you\
+        \n<br>get out of my api!\
         ", mimetype="text/html")
 
-@app.route('/play')
+@app.route('/geta-question')
 @cross_origin()
-def start_game():
-    game = main.GameState()
-    return game.human_players[0].card_strings
+def get_question():
+    game = game_model.GameState()
+    q = game.pop_q()
+    current_question = q
+    return jsonify(question=current_question)
+
+@app.route('/play/<question>')
+@cross_origin()
+def start_game(question):
+    return_string = "error"
+
+    game = game_model.GameState()
+    game.set_question(" ".join(question.split("|")))
+
+    possible_answers = "|".join(game.human_players[0].player.card_strings)
+    ai_answer = game.choose_ai_answer()
+    # print(possible_answers)
+
+    return jsonify(answers=possible_answers, ai_answer=ai_answer)
+
+@app.route('/analyse/<arg_string>')
+@cross_origin()
+def analyse(arg_string):
+    return_string = "error"
+    human_phrase = arg_string.split("+")[0]
+    ai_phrase = arg_string.split("+")[1]
+
+    amazon_human_sentiment = game_model.amazon_sentiment_score(" ".join(human_phrase.split("|")))
+    azure_human_sentiment = game_model.azure_sentiment_score(" ".join(human_phrase.split("|")))
+
+    amazon_ai_sentiment = game_model.amazon_sentiment_score(" ".join(ai_phrase.split("|")))
+    azure_ai_sentiment = game_model.azure_sentiment_score(" ".join(ai_phrase.split("|")))
+    #google_ai_sentiment = game_model.google_sentiment_score(" ".join(arg_string.split("|")))
+
+    return jsonify(amazon_human_score=amazon_human_sentiment, azure_human_score=azure_human_sentiment,
+                   amazon_ai_score=amazon_ai_sentiment, azure_ai_score=azure_ai_sentiment)
