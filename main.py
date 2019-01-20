@@ -47,13 +47,13 @@ class GameState:
         card = self.question_cards[self.used_questions]
         self.used_questions += 1
 
-        while card.count("_") > 1:
+        while card.count("_") != 1:
             card = self.question_cards[self.used_questions]
             self.used_questions += 1
 
         self.current_question = card
 
-        return card
+        return self.current_question
 
 class Player:
     """Contains common functions"""
@@ -87,14 +87,19 @@ if __name__ == "__main__":
 
     blanks = q.count("_")
     if blanks == 1:
-        phrase = q.replace("_", game.human_players[0].player.card_strings[2])
+        phrase = q.replace("_", game.human_players[0].player.card_strings[2][:-1])
+    elif blanks == 0:
+        print("Can only handle blanks")
+        print("Not: " + q )
+        sys.exit()
     else:
         print("Not ready!")
+        print("Question too many _ : " + q)
         sys.exit()
 
     print("Random Phrase:")
     print(phrase)
-
+    sys.exit()
     print("azure analysis:")
     print(azure_sentiment_score(phrase))
 
