@@ -1,5 +1,7 @@
-import pickle
+import pickle, sys
 from sentiment_analyses.azure_sentiment import azure_sentiment_score
+from sentiment_analyses.google_sentiment import GCP as google_sentiment_score
+from sentiment_analyses.amazon_sentiment import AWS_SWAG as amazon_sentiment_score
 from random import shuffle
 
 class GameState:
@@ -72,9 +74,28 @@ if __name__ == "__main__":
 
     game = GameState(n_human_players=1, n_ai_players=1, n_cards=10)
 
-    game.pop_q()
+    q = game.pop_q()
 
     print("Current questions:", game.current_question)
 
     print("Human cards:")
     print(game.human_players[0].player.display_cards())
+
+    blanks = q.count("_")
+    if blanks == 1:
+        phrase = q.replace("_", game.human_players[0].player.card_strings[2])
+    else:
+        print("Not ready!")
+        sys.exit()
+
+    print("Random Phrase:")
+    print(phrase)
+
+    print("azure analysis:")
+    print(azure_sentiment_score(phrase))
+
+    print("amazon analysis:")
+    print(amazon_sentiment_score(phrase))
+
+    print("google analysis:")
+    print(google_sentiment_score(phrase))
